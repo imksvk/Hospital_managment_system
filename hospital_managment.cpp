@@ -35,10 +35,11 @@ class Doctor{
 };
 
 class Appointment{
+    public:
     int patientid;
     int doctorid;
     string date;
-    public:
+    // public:
     Appointment(int p, int d, string datee){
         patientid = p;
         doctorid = d;
@@ -100,16 +101,39 @@ void scheduleappointments(){
 }
 
 void viewdoctor(){
-
+    cout<<endl<<endl;
+    for(int i=0; i<alldoctors.size(); i++){
+        cout<<endl;
+        cout<<"Doctor ID --> "<<alldoctors[i].id<<endl;
+        cout<<"Doctor Name --> "<<alldoctors[i].name<<endl;
+        cout<<"Gender --> "<<alldoctors[i].gender<<endl;
+        cout<<endl;
+    }
+    cout<<endl<<endl<<endl;
 }
 
 void viewpatient(){
-
+    cout<<endl<<endl;
+    for(int i=0; i<allpatients.size(); i++){
+        cout<<endl;
+        cout<<"Patient ID -->"<<allpatients[i].id<<endl;
+        cout<<"Patient Name --> "<<allpatients[i].name<<endl;
+        cout<<"Gender -->"<<allpatients[i].gender<<endl;
+        cout<<endl;
+    }
+    cout<<endl<<endl;
 }
 
 void viewappointments(){
-
-
+    cout<<endl<<endl;
+    for(int i=0; i<allappointments.size(); i++){
+        cout<<endl;
+        cout<<"Patient ID -->"<<allappointments[i].patientid<<endl;
+        cout<<"Appointment with Doctor ID -->"<<allappointments[i].doctorid<<endl;
+        cout<<"Date --> "<<allappointments[i].date<<endl;
+        cout<<endl;
+    }
+    cout<<endl<<endl;
 }
 
 
