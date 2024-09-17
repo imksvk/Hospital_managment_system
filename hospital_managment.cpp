@@ -52,6 +52,22 @@ vector<Patient> allpatients;
 vector<Doctor> alldoctors;
 vector<Appointment> allappointments;
 
+
+bool ispatientpresent(int id){
+    for(int i =0; i<allpatients.size(); i++){
+        if(allpatients[i].id == id) return true;
+    }
+    return false;
+}
+
+bool isdoctorpresent(int id){
+    for(int i=0; i<alldoctors.size(); i++){
+        if(alldoctors[i].id == id) return true;
+    }
+    return false;
+}
+
+
 void addpatient(){
     int a;
     string n;
@@ -95,8 +111,15 @@ void scheduleappointments(){
     cout<<"Enter the Date : "<<endl;
     cin>>date;
 
+    if(!ispatientpresent(pi) or !isdoctorpresent(di)){
+        cout<<"Invalid Patient Id OR  Invalid Doctor Id"<<endl;
+        cout<<"Appointment Unsuccesfull"<<endl;
+    }
+
+    else{
     Appointment temp(pi, di, date);
     allappointments.push_back(temp);
+    }
 
 }
 
@@ -126,6 +149,11 @@ void viewpatient(){
 
 void viewappointments(){
     cout<<endl<<endl;
+    if(allappointments.size() <= 0){
+        cout<<endl;
+        cout<<" <-- No Appointments -->"<<endl;
+        return;
+    }
     for(int i=0; i<allappointments.size(); i++){
         cout<<endl;
         cout<<"Patient ID -->"<<allappointments[i].patientid<<endl;
