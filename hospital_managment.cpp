@@ -4,6 +4,8 @@ using namespace std;
 int pid;
 int did;
 
+
+
 class Patient{
     public:
         string name;
@@ -33,18 +35,67 @@ class Doctor{
 };
 
 class Appointment{
-
+    int patientid;
+    int doctorid;
+    string date;
+    public:
+    Appointment(int p, int d, string datee){
+        patientid = p;
+        doctorid = d;
+        date = datee;
+    }
 };
 
 
+vector<Patient> allpatients;
+vector<Doctor> alldoctors;
+vector<Appointment> allappointments;
+
 void addpatient(){
+    int a;
+    string n;
+    string g;
+    cout<<"Give the patient name : "<<endl;
+    cin>>n;
+    cout<<"Give the patienet Age :"<<endl;
+    cin>>a;
+    cout<<"Give the patient Gender : "<<endl;
+    cin>>g;
+    
+    Patient temp(n,a,g);
+    allpatients.push_back(temp);
+
 
 }
 
 void adddoctor(){
 
+    int a;
+    string n;
+    string g;
+    cout<<"Give the Doctor name : "<<endl;
+    cin>>n;
+    cout<<"Give the Doctor Age :"<<endl;
+    cin>>a;
+    cout<<"Give the Doctor Gender : "<<endl;
+    cin>>g;
+    
+    Doctor temp(n,a,g);
+    alldoctors.push_back(temp);
 }
+
 void scheduleappointments(){
+    int pi, di;
+    string date;
+    cout<<"Give the Patient ID : "<<endl;
+    cin>>pi;
+    cout<<"Give the Doctor ID : "<<endl;
+    cin>>di;
+    cout<<"Enter the Date : "<<endl;
+    cin>>date;
+
+    Appointment temp(pi, di, date);
+    allappointments.push_back(temp);
 
 }
 
@@ -61,9 +112,7 @@ void viewappointments(){
 
 }
 
-vector<Patient> allpatients;
-vector<Doctor> alldoctors;
-vector<Appointment> allappointments;
+
 
 int main(){
     pid = 1;
