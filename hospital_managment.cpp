@@ -52,11 +52,15 @@ vector<Patient> allpatients;
 vector<Doctor> alldoctors;
 vector<Appointment> allappointments;
 
+unordered_map<int, string> patients_map;
+unordered_map<int, string> doctors_map;
 
 bool ispatientpresent(int id){
-    for(int i =0; i<allpatients.size(); i++){
-        if(allpatients[i].id == id) return true;
-    }
+    // for(int i =0; i<allpatients.size(); i++){
+    //     if(allpatients[i].id == id) return true;
+    // }
+    // return false;
+    if(patients_map.find(id) != patients_map.end()) return true;
     return false;
 }
 
@@ -82,6 +86,8 @@ void addpatient(){
     Patient temp(n,a,g);
     allpatients.push_back(temp);
 
+    patients_map[pid-1] = n;
+    cout<<" Patient Added "<<endl;
 
 }
 
@@ -99,6 +105,9 @@ void adddoctor(){
     
     Doctor temp(n,a,g);
     alldoctors.push_back(temp);
+
+    doctors_map[did-1] = n;
+    cout<<" Doctor Added "<<endl;
 }
 
 void scheduleappointments(){
@@ -114,11 +123,11 @@ void scheduleappointments(){
     if(!ispatientpresent(pi) or !isdoctorpresent(di)){
         cout<<"Invalid Patient Id OR  Invalid Doctor Id"<<endl;
         cout<<"Appointment Unsuccesfull"<<endl;
-    }
+    }else{
 
-    else{
     Appointment temp(pi, di, date);
     allappointments.push_back(temp);
+    cout<<" Appointment Added "<<endl;
     }
 
 }
@@ -156,8 +165,8 @@ void viewappointments(){
     }
     for(int i=0; i<allappointments.size(); i++){
         cout<<endl;
-        cout<<"Patient ID -->"<<allappointments[i].patientid<<endl;
-        cout<<"Appointment with Doctor ID -->"<<allappointments[i].doctorid<<endl;
+        cout<<"Patient ID -->"<<allappointments[i].patientid<<" Name --> "<<patients_map[allappointments[i].patientid]<<endl;
+        cout<<"Appointment with Doctor ID -->"<<allappointments[i].doctorid<<" Doctor Name --> "<<doctors_map[allappointments[i].doctorid]<<endl;
         cout<<"Date --> "<<allappointments[i].date<<endl;
         cout<<endl;
     }
